@@ -24,6 +24,9 @@
             if (!currentDate || newDate >= currentDate) {
                 events[event.id] = event;
                 dates[event.id] = newDate;
+
+                if (event.action === 'add') latest.added(event);
+                if (event.action === 'remove') latest.removed(event);
             }
         }
 
@@ -50,6 +53,9 @@
                 handle(event);
             }
         };
+
+        latest.added = function() {};
+        latest.removed = function() {};
 
         return latest;
     }

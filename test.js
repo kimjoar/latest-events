@@ -80,3 +80,28 @@ test('can add events using an array', function(t) {
     t.equal(events[1].id, 2);
     t.equal(events[2].id, 3);
 });
+
+test('can register added method which notifies when event is added', function(t) {
+    t.plan(2);
+
+    var latest = latestEvents();
+    latest.added = function(event) {
+        t.equal(event.id, 1);
+        t.equal(event.date, firstDate);
+    };
+
+    latest.process({ action: 'add', id: 1, date: firstDate });
+});
+
+test('can register added method which notifies when event is removed', function(t) {
+    t.plan(2);
+
+    var latest = latestEvents();
+    latest.removed = function(event) {
+        t.equal(event.id, 1);
+        t.equal(event.date, secondDate);
+    };
+
+    latest.process({ action: 'add', id: 1, date: firstDate });
+    latest.process({ action: 'remove', id: 1, date: secondDate });
+});
