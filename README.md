@@ -21,6 +21,8 @@ latest();
 // does not contain event with `id == 1` as `remove` has a later date.
 ```
 
+`date` is anything that can be handled by [`Date.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse).
+
 We can also process arrays:
 
 ```javascript
