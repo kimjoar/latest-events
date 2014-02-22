@@ -9,12 +9,16 @@ Example:
 ```javascript
 var latest = latestEvents();
 
-latest.process({ action: 'add', id: 1, date: firstDate });
+// first
 latest.process({ action: 'remove', id: 1, date: secondDate });
+
+// then later
+latest.process({ action: 'add', id: 1, date: firstDate });
 latest.process({ action: 'add', id: 2, date: secondDate });
 
 latest();
 // [{ action: 'add', id: 2, date: secondDate }]
+// does not contain event with `id == 1` as `remove` has a later date.
 ```
 
 We can also process arrays:
