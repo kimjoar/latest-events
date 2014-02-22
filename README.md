@@ -38,3 +38,19 @@ latest();
 // ]
 ```
 
+Install
+-------
+
+npm:
+
+```
+$ npm install --save latest-events
+```
+
+Bower:
+
+```
+$ bower install --save latest-events
+```
+
+Manually: [download file](https://raw.github.com/kjbekkelund/latest-events/master/latest.js)
