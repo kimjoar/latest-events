@@ -1,0 +1,23 @@
+{
+  "name": "latest-events",
+  "version": "0.0.1",
+  "description": "When add or remove events can be received out of order, but we are only interested in the latest event that occured",
+  "main": "latest.js",
+  "dependencies": {
+    "tape": "~2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "testem"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kjbekkelund/latest-events.git"
+  },
+  "author": "Kim Joar Bekkelund <kjbekkelund@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjbekkelund/latest-events/issues"
+  },
+  "homepage": "https://github.com/kjbekkelund/latest-events"
+}

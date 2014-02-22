@@ -1,0 +1,18 @@
+{
+  "name": "latest-events",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kjbekkelund/latest-events",
+  "authors": [
+    "Kim Joar Bekkelund <kjbekkelund@gmail.com>"
+  ],
+  "description": "When add or remove events can be received out of order, but we are only interested in the latest event that occured",
+  "main": "latest.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
