@@ -1,40 +1,57 @@
-module.exports = function() {
-    var events = {};
-    var dates = {};
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.latestEvents = factory();
+  }
+}(this, function() {
 
-    function handle(event) {
-        var currentDate = dates[event.id];
-        var newDate = Date.parse(event.date);
+    return function() {
+        var events = {};
+        var dates = {};
 
-        if (!currentDate || newDate >= currentDate) {
-            events[event.id] = event;
-            dates[event.id] = newDate;
-        }
-    }
+        function handle(event) {
+            var currentDate = dates[event.id];
+            var newDate = Date.parse(event.date);
 
-    function addedEvents() {
-        var addedEvents = [];
-
-        for (var key in events) {
-            if (events[key].action === 'add') {
-                addedEvents.push(events[key]);
+            if (!currentDate || newDate >= currentDate) {
+                events[event.id] = event;
+                dates[event.id] = newDate;
             }
         }
 
-        return addedEvents;
-    }
-    
-    function latest() {
-        return addedEvents();
-    }
+        function addedEvents() {
+            var addedEvents = [];
 
-    latest.process = function(event) {
-        if (Array.isArray(event)) {
-            event.forEach(handle);
-        } else {
-            handle(event);
+            for (var key in events) {
+                if (events[key].action === 'add') {
+                    addedEvents.push(events[key]);
+                }
+            }
+
+            return addedEvents;
         }
-    };
+        
+        function latest() {
+            return addedEvents();
+        }
 
-    return latest;
-}
+        latest.process = function(event) {
+            if (Array.isArray(event)) {
+                event.forEach(handle);
+            } else {
+                handle(event);
+            }
+        };
+
+        return latest;
+    }
+
+}));
