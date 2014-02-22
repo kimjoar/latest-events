@@ -93,7 +93,7 @@ test('can register added method which notifies when event is added', function(t)
     latest.process({ action: 'add', id: 1, date: firstDate });
 });
 
-test('can register added method which notifies when event is removed', function(t) {
+test('can register removed method which notifies when event is removed', function(t) {
     t.plan(2);
 
     var latest = latestEvents();
