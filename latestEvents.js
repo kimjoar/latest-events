@@ -30,7 +30,7 @@
             }
         }
 
-        function addedEvents() {
+        function latest() {
             var addedEvents = [];
 
             for (var key in events) {
@@ -40,10 +40,6 @@
             }
 
             return addedEvents;
-        }
-        
-        function latest() {
-            return addedEvents();
         }
 
         latest.process = function(event) {
