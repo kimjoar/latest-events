@@ -4,7 +4,10 @@
   "description": "When add or remove events can be received out of order, but we are only interested in the latest event that occured",
   "main": "latestEvents.js",
   "devDependencies": {
-    "tape": "~2.5.0"
+    "tape": "^2.5.0",
+    "testem": "^0.6.14",
+    "browserify": "^3.38.0",
+    "phantomjs": "^1.9.7-3"
   },
   "scripts": {
     "test": "testem"
