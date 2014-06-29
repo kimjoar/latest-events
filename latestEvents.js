@@ -27,6 +27,7 @@
 
                 if (event.action === 'add') latest.added(event);
                 if (event.action === 'remove') latest.removed(event);
+                latest.event(event);
             }
         }
 
@@ -34,7 +35,7 @@
             var addedEvents = [];
 
             for (var key in events) {
-                if (events[key].action === 'add') {
+                if (events[key].action !== 'remove') {
                     addedEvents.push(events[key]);
                 }
             }
@@ -52,6 +53,7 @@
 
         latest.added = function() {};
         latest.removed = function() {};
+        latest.event = function() {};
 
         return latest;
     }

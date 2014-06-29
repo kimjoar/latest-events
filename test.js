@@ -33,6 +33,20 @@ test('can remove event when remove occurs later than add', function(t){
     t.equal(events[0].id, 2);
 });
 
+test('can process arbitrary events', function(t){
+    t.plan(3);
+
+    var latest = latestEvents();
+    latest.process({ action: 'add', id: 1, date: firstDate });
+    latest.process({ action: 'test', id: 1, date: thirdDate });
+    latest.process({ action: 'something', id: 1, date: secondDate });
+
+    var events = latest();
+    t.equal(events.length, 1);
+    t.equal(events[0].id, 1);
+    t.equal(events[0].action, 'test');
+});
+
 test('does not remove event when remove occurs earlier than add', function(t){
     t.plan(4);
 
@@ -104,4 +118,22 @@ test('can register removed method which notifies when event is removed', functio
 
     latest.process({ action: 'add', id: 1, date: firstDate });
     latest.process({ action: 'remove', id: 1, date: secondDate });
+});
+
+test('can register event method which notifies whenever event is processed', function(t) {
+    t.plan(4);
+
+    var latest = latestEvents();
+
+    latest.event = function(event) {
+        t.equal(event.id, 1);
+        t.equal(event.action, 'add');
+    };
+    latest.process({ action: 'add', id: 1, date: firstDate });
+
+    latest.event = function(event) {
+        t.equal(event.id, 1);
+        t.equal(event.action, 'something');
+    };
+    latest.process({ action: 'something', id: 1, date: secondDate });
 });

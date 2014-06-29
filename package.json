@@ -1,6 +1,6 @@
 {
   "name": "latest-events",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "When add or remove events can be received out of order, but we are only interested in the latest event that occured",
   "main": "latestEvents.js",
   "devDependencies": {
